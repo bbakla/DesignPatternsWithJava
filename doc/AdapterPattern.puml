@@ -1,0 +1,108 @@
+@startuml
+
+skinparam BackgroundColor #F8F8F8
+skinparam  Shadowing false
+skinparam RoundCorner 3
+skinparam noteBorderColor Khaki
+skinparam noteBackgroundColor #FCF3CF
+
+skinparam class {
+BackgroundColor white
+ArrowColor CornFlowerBlue
+BorderColor #C8C8C8
+BorderThickness 1.5
+HeaderBackgroundColor LightGrey
+}
+
+title object adapter
+interface Target{
++ method() : Data
+}
+
+class Adapter {
+  - adaptee: Adaptee
+  + method() : Data
+}
+
+class Adaptee {
+  + specificMethod()
+}
+
+note left of Adapter::method
+  uses adaptee object
+  calls specificMethod()
+end note
+
+Client -r-> Target
+Target <|-- Adapter
+Adapter o-r-> Adaptee
+note right of Adaptee
+  The Class that is wrapped
+end note
+
+newpage
+skinparam Shadowing false
+skinparam class {
+BackgroundColor #F8F8F8
+ArrowColor CornFlowerBlue
+BorderColor #C8C8C8
+BorderThickness 1.5
+HeaderBackgroundColor LightGrey
+}
+title class adapter
+interface Target {
+  + method()
+}
+
+Client -r-> Target
+Target <|-- Adapter
+Adaptee <|-- Adapter
+
+
+newpage
+skinparam Shadowing false
+skinparam noteBorderColor Khaki
+skinparam noteBackgroundColor #FCF3CF
+skinparam class {
+BackgroundColor #F8F8F8
+ArrowColor CornFlowerBlue
+BorderColor #C8C8C8
+BorderThickness 1.5
+HeaderBackgroundColor LightGrey
+}
+
+class ComputerWithUSAPlug <<client>> {
+ - USACPlug
+ + ComputerWithUSAPlug(USACPlug)
+ }
+
+class EuropeanWallOutlet <<adaptee>>{
+  + plug(EuropeanPlug)
+  + giveElectricity()
+ }
+
+interface USACPlug <<target>> {
+  + getPower()
+}
+class PowerAdapter <<adapter>> {
+ - EuropeanWallOutlet
+
+ - convertUSACPlugtoEuropean() : EuropeanPlug
+ + getPower()
+}
+
+ComputerWithUSAPlug *-r-> USACPlug
+USACPlug <|-- PowerAdapter
+PowerAdapter o-> EuropeanWallOutlet
+
+note left of PowerAdapter::convertUSACPlugtoEuropean
+  uses USACPlug object
+  to obtain EuropeanPlug
+end note
+
+note left of PowerAdapter::getPower
+  uses giveElectricity() and plug()
+  to give power to USACPlug object
+end note
+
+@enduml
