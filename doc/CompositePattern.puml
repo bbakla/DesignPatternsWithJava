@@ -1,0 +1,41 @@
+@startuml
+
+skinparam BackgroundColor #F8F8F8
+skinparam  Shadowing false
+skinparam RoundCorner 3
+skinparam noteBorderColor Khaki
+skinparam noteBackgroundColor #FCF3CF
+
+skinparam class {
+BackgroundColor white
+ArrowColor CornFlowerBlue
+BorderColor #C8C8C8
+BorderThickness 1.5
+HeaderBackgroundColor LightGrey
+}
+
+class Client {}
+interface Component {
+  + method()
+}
+
+class Leaf {
+  + method()
+}
+class Composite {
+  - List<Component> children
+  + addComponent(Component)
+  + removeComponent(Component)
+  + method()
+}
+
+note left of Composite::method
+  for all children
+  child.method()
+end note
+
+Component <|-- Composite
+Component <|-- Leaf
+Client *-r-> Component
+
+@enduml
