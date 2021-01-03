@@ -1,0 +1,68 @@
+@startuml
+skinparam BackgroundColor #F8F8F8
+skinparam  Shadowing false
+skinparam RoundCorner 3
+skinparam noteBorderColor Khaki
+skinparam noteBackgroundColor #FCF3CF
+
+skinparam class {
+BackgroundColor white
+ArrowColor CornFlowerBlue
+BorderColor #C8C8C8
+BorderThickness 1.5
+HeaderBackgroundColor LightGrey
+}
+
+class Client {
+}
+
+interface Component {
+  + apply()
+}
+
+class ConcreteComponent {
+}
+
+abstract class BaseDecorator {
+ # wrappee : Component
+ + BaseDecorator(Component)
+ + apply()
+}
+
+class ConcreteDecorator1{
+  + apply()
+}
+
+class ConcreteDecorator2{
+  + apply()
+}
+
+class ConcreteDecorator3{
+  + apply()
+}
+
+note left of BaseDecorator::apply
+  wrappee.apply()
+end note
+
+note left of ConcreteDecorator1::apply
+  calls decorated before/after
+  calling super.apply()
+end note
+
+note left of Client
+  c = new ConcreteComponent()
+  c = new ConcreteDecorator1(c)
+  c = new ConcreteDecorator2(c)
+  c = new ConcreteDecorator3(c)
+  c.apply()
+end note
+
+Client *-r-> Component
+Component <|-- ConcreteComponent
+Component <|-- BaseDecorator
+BaseDecorator <|-- ConcreteDecorator1
+BaseDecorator <|-- ConcreteDecorator2
+BaseDecorator <|-- ConcreteDecorator3
+
+@enduml
