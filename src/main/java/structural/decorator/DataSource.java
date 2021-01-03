@@ -1,4 +1,4 @@
-package structural.decorator.filedecorator;
+package structural.decorator;
 
 public interface DataSource {
 

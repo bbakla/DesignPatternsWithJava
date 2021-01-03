@@ -1,6 +1,6 @@
-package structural.decorator.filedecorator.decorators;
+package structural.decorator.decorators;
 
-import structural.decorator.filedecorator.DataSource;
+import structural.decorator.DataSource;
 
 public class EncryptionDecorator extends AbstractDecorator {
 

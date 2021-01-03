@@ -1,9 +1,8 @@
-package structural.decorator.filedecorator;
+package structural.decorator;
 
-import javax.xml.crypto.Data;
-import structural.decorator.filedecorator.decorators.CompressionDecorator;
-import structural.decorator.filedecorator.decorators.ConvertToPdfDecorator;
-import structural.decorator.filedecorator.decorators.EncryptionDecorator;
+import structural.decorator.decorators.CompressionDecorator;
+import structural.decorator.decorators.ConvertToPdfDecorator;
+import structural.decorator.decorators.EncryptionDecorator;
 
 public class Client {
 

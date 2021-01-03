@@ -1,4 +1,4 @@
-package structural.decorator.filedecorator;
+package structural.decorator;
 
 //Concrete Component
 public class FileDataSource implements DataSource {
