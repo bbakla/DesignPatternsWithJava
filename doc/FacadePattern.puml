@@ -1,0 +1,47 @@
+@startuml
+
+skinparam BackgroundColor #F8F8F8
+skinparam  Shadowing false
+skinparam RoundCorner 3
+skinparam noteBorderColor Khaki
+skinparam noteBackgroundColor #FCF3CF
+
+skinparam class {
+BackgroundColor white
+ArrowColor CornFlowerBlue
+BorderColor #C8C8C8
+BorderThickness 1.5
+HeaderBackgroundColor LightGrey
+}
+
+class Client {}
+class Facade {
+  + method1()
+}
+
+note right of Facade::method1
+combines implement1(), implement2()
+and implement3()
+
+end note
+
+package Subsystems <<Rectangle>> {
+class Implementation1 {
+  + implement1()
+}
+
+class Implementation2 {
+  + implement2()
+}
+
+class Implementation3 {
+  + implement3()
+}
+}
+
+Client o-r-> Facade
+Facade *--> Implementation1
+Facade *--> Implementation2
+Facade *--> Implementation3
+
+@enduml
