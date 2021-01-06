@@ -1,0 +1,60 @@
+@startuml
+
+skinparam BackgroundColor #F8F8F8
+skinparam  Shadowing false
+skinparam RoundCorner 3
+skinparam noteBorderColor Khaki
+skinparam noteBackgroundColor #FCF3CF
+
+skinparam class {
+BackgroundColor white
+ArrowColor CornFlowerBlue
+BorderColor #C8C8C8
+BorderThickness 1.5
+HeaderBackgroundColor LightGrey
+}
+
+class Client {}
+interface FlyWeight {
+  + operation()
+
+}
+class ConcreteFlyWeight {
+  - intrinsicState1
+  - intrinsicState2
+
+  + ConcreteFlyWeight(intrinsicState1, intrinsicState2)
+  + operation()
+}
+
+class ConcreteFlyWeight2 {
+  - intrinsicState1
+  - intrinsicState2
+
+  + ConcreteFlyWeight2(intrinsicState1, intrinsicState2)
+  + operation()
+}
+
+note right of FlyWeight::operation
+  may take extrinsicState
+  as input parameter
+end note
+
+class Context {
+ - extrinsicState1
+ - FlyWeight
+}
+
+class FlyWeightFactory {
+ - Map<extrinsicState, FlyWeight>
+ + getFlyWeight(intrinsicState) FlyWeight
+
+}
+
+Client *--> Context
+Context o-r-> FlyWeight
+Context *-l-> FlyWeightFactory
+FlyWeight <|-- ConcreteFlyWeight
+FlyWeight <|-- ConcreteFlyWeight2
+
+@enduml
