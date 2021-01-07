@@ -1,0 +1,45 @@
+@startuml
+
+skinparam BackgroundColor #F8F8F8
+skinparam  Shadowing false
+skinparam RoundCorner 3
+skinparam noteBorderColor Khaki
+skinparam noteBackgroundColor #FCF3CF
+
+skinparam class {
+BackgroundColor white
+ArrowColor CornFlowerBlue
+BorderColor #C8C8C8
+BorderThickness 1.5
+HeaderBackgroundColor LightGrey
+}
+
+class Client{}
+interface Service{
+  + operation()
+}
+class Proxy{
+  - realService: Service
+  + doProxyChecks()
+  + operation()
+}
+class RealService{
+  + operation()
+}
+
+note left of Proxy::doProxyChecks
+  that method can be private too.
+end note
+
+note left of Proxy::operation
+  if (doProxyChecks()) {
+    realService.operation()
+  }
+end note
+
+Client *-r-> Service
+Service <|-- Proxy
+Service <|-- RealService
+
+
+@enduml

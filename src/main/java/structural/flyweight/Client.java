@@ -26,7 +26,6 @@ public class Client {
 
     System.out.printf("GNP of %s is %.2f\n", turkey.getCountry(), turkey.getGNP());
     System.out.printf("GNP of %s is %.2f\n", germany.getCountry(), germany.getGNP());
-
   }
 
 }
