@@ -1,0 +1,55 @@
+@startuml
+
+skinparam BackgroundColor #F8F8F8
+skinparam  Shadowing false
+skinparam RoundCorner 3
+skinparam noteBorderColor Khaki
+skinparam noteBackgroundColor #FCF3CF
+skinparam noteFontName Courier
+skinparam noteFontSite 4
+
+skinparam class {
+BackgroundColor white
+ArrowColor CornFlowerBlue
+BorderColor #C8C8C8
+BorderThickness 1.5
+HeaderBackgroundColor LightGrey
+}
+
+class Client {}
+interface Handler {
+  + handle(Request)
+}
+
+abstract class AbstractHandler {
+  # handler:Handler
+  + commonOperations()
+}
+
+note left of AbstractHandler
+  this class is optional
+end note
+
+class ConcreteHandler {
+  + operate(Request)
+}
+
+note left of ConcreteHandler::operate
+  if (canHandle(request)) {
+    //logic
+  } else {
+    handler.operate(request)
+  }
+end note
+
+class ConcreteHandler2 {
+  + operate(Request)
+}
+
+Client -r-> Handler
+Handler <|-- AbstractHandler
+AbstractHandler <|-- ConcreteHandler
+AbstractHandler <|-- ConcreteHandler2
+ConcreteHandler .r. ConcreteHandler2 : successor
+
+@enduml
