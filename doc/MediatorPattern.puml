@@ -1,0 +1,70 @@
+@startuml
+
+skinparam BackgroundColor #F8F8F8
+skinparam  Shadowing false
+skinparam RoundCorner 3
+skinparam noteBorderColor Khaki
+skinparam noteBackgroundColor #FCF3CF
+skinparam noteFontName Courier
+skinparam noteFontSite 4
+
+skinparam class {
+BackgroundColor white
+ArrowColor CornFlowerBlue
+BorderColor #C8C8C8
+BorderThickness 1.5
+HeaderBackgroundColor LightGrey
+}
+
+interface Component {
+  + send(Message)
+  + receive(Message)
+}
+
+class Component1 {
+  - mediator:Mediator
+}
+class Component2 {
+  - mediator:Mediator
+}
+class Component3 {
+  - mediator:Mediator
+}
+class Component4 {
+  - mediator:Mediator
+}
+
+interface Mediator {
+  + notify()
+}
+class ConcreteMediator {
+  - components:List<Component>
+  + notify()
+}
+
+note left of ConcreteMediator::notify
+  component.receive(Message)
+  //signature can be changed
+end note
+
+Mediator <|-- ConcreteMediator
+
+Component <|-- Component1
+Component <|-- Component2
+Component <|-- Component3
+Component <|-- Component4
+Component1 o--> Mediator
+Component2 o--> Mediator
+Component3 o-r-> Mediator
+Component4 o-l-> Mediator
+
+note as N1
+  * Mediator interface can be omitted
+   when there is only one mediator
+
+  * Components dont have to
+   implement the same interface
+end note
+
+
+@enduml
