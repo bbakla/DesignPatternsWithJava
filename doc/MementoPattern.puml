@@ -1,0 +1,42 @@
+@startuml
+@startuml
+skinparam BackgroundColor #F8F8F8
+skinparam  Shadowing false
+skinparam RoundCorner 3
+skinparam noteBorderColor Khaki
+skinparam noteBackgroundColor #FCF3CF
+skinparam noteFontName Courier
+skinparam noteFontSite 4
+
+skinparam class {
+BackgroundColor white
+ArrowColor CornFlowerBlue
+BorderColor #C8C8C8
+BorderThickness 1.5
+HeaderBackgroundColor LightGrey
+}
+
+class Memento{
+  - state
+  + Memento(state)
+    getState(): state
+}
+
+class Originator {
+  - state
+  - takeSnapshot(): Memento
+  - createMemento(): Memento
+  + undo()
+}
+
+class CareTaker {
+ - originator:Originator
+ - history:Memento[]
+ + takeSnapshot(): Memento
+}
+
+Memento <|-r- Originator  :<<instantiates>>
+CareTaker o--> Memento :<<uses>>
+Originator --> CareTaker
+
+@enduml
