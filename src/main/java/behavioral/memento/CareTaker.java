@@ -13,7 +13,7 @@ public class CareTaker {
   }
 
   public void restoreState() {
-    this.car.getSnapshot(memento);
+    this.car.restore(memento);
   }
 
 }

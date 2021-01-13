@@ -20,7 +20,7 @@ public class Car {
     this.km += 2;
   }
 
-  public void getSnapshot(Object snapshot) {
+  public void restore(Object snapshot) {
     var s = (CarStateMemento) snapshot;
     this.speed = s.speed;
     this.km = s.km;
