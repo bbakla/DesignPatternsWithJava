@@ -1,0 +1,119 @@
+@startuml
+
+skinparam BackgroundColor #F8F8F8
+skinparam  Shadowing false
+skinparam RoundCorner 3
+skinparam noteBorderColor Khaki
+skinparam noteBackgroundColor #FCF3CF
+skinparam noteFontName Courier
+skinparam noteFontSite 4
+
+skinparam class {
+BackgroundColor white
+ArrowColor CornFlowerBlue
+BorderColor #C8C8C8
+BorderThickness 1.5
+HeaderBackgroundColor LightGrey
+}
+
+interface State {
+  + handle()
+}
+
+class State1{
+ - context:Context
+ + State1(Context)
+ + handle()
+}
+class State2{
+ - context:Context
+ + State2(Context)
+ + handle()
+ }
+
+
+class Context {
+  - states:List<State>
+  - currentState:State
+  + Context(State)
+  + changeState(State)
+  + handle()
+}
+
+note right of State::handle
+   ...
+   context.changeState(nextState)
+end note
+
+note left of Context::changeState
+  doesnt have to have
+  State in signature
+end note
+
+note left of Context::handle
+   state.handle()
+end note
+
+State <|-- State1
+State <|-- State2
+Context *-r->State
+Context <.. State1
+Context <.. State2
+
+newpage
+title State hold the context
+skinparam BackgroundColor #F8F8F8
+skinparam  Shadowing false
+skinparam RoundCorner 3
+skinparam noteBorderColor Khaki
+skinparam noteBackgroundColor #FCF3CF
+skinparam noteFontName Courier
+skinparam noteFontSite 4
+
+skinparam class {
+BackgroundColor white
+ArrowColor CornFlowerBlue
+BorderColor #C8C8C8
+BorderThickness 1.5
+HeaderBackgroundColor LightGrey
+}
+
+interface State {
+  + handle(Context)
+}
+
+class State1{
+  + handle(Context)
+}
+
+class State2{
+  + handle(Context)
+}
+
+class Context{
+  - state:State
+  + handle()
+  + setState(State)
+}
+
+note left of State2::handle
+            ...
+  context.setState(new State2());
+end note
+
+note left of Context::handle
+  state.handle(this);
+end note
+
+State <|-- State1
+State <|-- State2
+Context *-r-> State
+Context <.. State1
+Context <.. State2
+
+
+
+
+@enduml
+
+

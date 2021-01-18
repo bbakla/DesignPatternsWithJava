@@ -1,0 +1,33 @@
+@startuml
+skinparam BackgroundColor #F8F8F8
+skinparam  Shadowing false
+skinparam RoundCorner 3
+skinparam noteBorderColor Khaki
+skinparam noteBackgroundColor #FCF3CF
+skinparam noteFontName Courier
+skinparam noteFontSite 4
+
+skinparam state {
+'BackgroundColor white
+'BackgroundColor<<Warning>> Blue
+BackgroundColor Ivory
+ArrowColor CornFlowerBlue
+BorderColor #C8C8C8
+BorderThickness 1.5
+'HeaderBackgroundColor LightGrey
+}
+
+[*] --> Shipped
+
+Shipped --> ProcessedInParcelCenter
+ProcessedInParcelCenter --> ArrivedToTheCity
+ArrivedToTheCity --> LoadedOnTruck
+LoadedOnTruck --> Delivered
+LoadedOnTruck --> TryAgain :couldnt be delivered
+TryAgain --> Delivered : successful
+TryAgain --> SendBack : unsuccessful
+
+Delivered --> [*]
+SendBack --> [*]
+
+@enduml
