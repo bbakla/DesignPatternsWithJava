@@ -16,19 +16,24 @@ BorderThickness 1.5
 HeaderBackgroundColor LightGrey
 }
 
+title Context holds all the states
+
 interface State {
-  + handle()
+  + handleState1Operation()
+  + handleState2Operation()
 }
 
 class State1{
  - context:Context
  + State1(Context)
- + handle()
+ + handleState1Operation()
+ + handleState2Operation()
 }
 class State2{
  - context:Context
  + State2(Context)
- + handle()
+ + handleState1Operation()
+ + handleState2Operation()
  }
 
 
@@ -37,31 +42,48 @@ class Context {
   - currentState:State
   + Context(State)
   + changeState(State)
-  + handle()
+  + handleState1Operation()
+  + handleState2Operation()
 }
 
-note right of State::handle
+note as N1
+States may have the context object to set its
+next state but it can also be handled
+by context so states are not responsible for
+context state changes.
+object
+end note
+
+note left of State1::handleState1Operation
    ...
    context.changeState(nextState)
 end note
 
-note left of Context::changeState
-  doesnt have to have
-  State in signature
+note left of State1::handleState2Operation
+    not implemented message
 end note
 
-note left of Context::handle
-   state.handle()
+note right of State2::handleState1Operation
+    not implemented message
+end note
+
+note left of Context::handleState1Operation
+   state1.handleState1Operation()
+end note
+
+note left of Context::handleState2Operation
+   state2.handleState2Operation()
 end note
 
 State <|-- State1
 State <|-- State2
+State1 .r. State2 : calls
 Context *-r->State
 Context <.. State1
 Context <.. State2
 
 newpage
-title State hold the context
+
 skinparam BackgroundColor #F8F8F8
 skinparam  Shadowing false
 skinparam RoundCorner 3
@@ -96,7 +118,7 @@ class Context{
   + setState(State)
 }
 
-note left of State2::handle
+note right of State2::handle
             ...
   context.setState(new State2());
 end note
@@ -107,6 +129,7 @@ end note
 
 State <|-- State1
 State <|-- State2
+State1 .r. State2 : calls
 Context *-r-> State
 Context <.. State1
 Context <.. State2
