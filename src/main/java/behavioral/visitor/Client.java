@@ -7,7 +7,7 @@ public class Client {
     var inventoryVisitor = new InventoryVisitor();
 
     var book = new Book("die kleine Prince", 3.0, 50);
-    var cd = new CD("FAzil Say", 10.0, 400);
+    var cd = new CD("Fzil Say", 10.0, 400);
 
     book.accept(priceVisitor);
     cd.accept(priceVisitor);
@@ -15,7 +15,6 @@ public class Client {
     System.out.println("-------------------------");
 
     book.accept(inventoryVisitor);
-    cd.accept(priceVisitor);
+    cd.accept(inventoryVisitor);
   }
-
 }

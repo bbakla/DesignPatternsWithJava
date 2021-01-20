@@ -4,7 +4,7 @@ public class InventoryVisitor implements Visitor {
 
   @Override
   public void visit(Book book) {
-    System.out.printf("Name of the is %s. Quantity is %.2d and will be updated to %.2d\n",
+    System.out.printf("Name of the is %s. Quantity is %d and will be updated to %d\n",
         book.getName(), book.getQuantity(), getBookInventory());
 
         book.setQuantity(getBookInventory());
@@ -12,7 +12,7 @@ public class InventoryVisitor implements Visitor {
 
   @Override
   public void visit(CD cd) {
-    System.out.printf("Name of the is %s. Quantity is %.2d and will be updated to %.2d\n",
+    System.out.printf("Name of the is %s. Quantity is %d and will be updated to %d\n",
         cd.getName(), cd.getQuantity(), getBookInventory());
 
     cd.setQuantity(getCDInventory());
