@@ -1,0 +1,73 @@
+@startuml
+
+skinparam BackgroundColor #F8F8F8
+skinparam  Shadowing false
+skinparam RoundCorner 3
+skinparam noteBorderColor Khaki
+skinparam noteBackgroundColor #FCF3CF
+skinparam noteFontName Courier
+skinparam noteFontSize 11
+
+skinparam class {
+BackgroundColor white
+ArrowColor CornFlowerBlue
+BorderColor #C8C8C8
+BorderThickness 1.5
+HeaderBackgroundColor LightGrey
+
+}
+
+interface Visitor{
+  + visit(Node1)
+  + visit(Node2)
+  + visit(Node3)
+  '+ addElement(Element)
+}
+
+class ConcreteVisitor {
+}
+
+interface Element {
+  + accept(Visitor)
+}
+
+class ConcreteElement2 {
+  + accept(Visitor)
+}
+
+class ConcreteElement1 {
+  + accept(Visitor)
+}
+
+
+
+Visitor <|-- ConcreteVisitor
+Element <|-- ConcreteElement1
+Element <|--  ConcreteElement2
+
+Visitor .r.> Element
+
+note left of Visitor
+  method overloading
+  depending
+  on the language
+end note
+
+note right of Element::accept
+  it redirects the call
+  to the visiting method
+end note
+
+note left of ConcreteElement1::accept
+  visitor.visit1()
+end note
+
+note left of ConcreteElement2::accept
+  visitor.visit2()
+end note
+
+
+
+
+
+@enduml

@@ -12,7 +12,5 @@ public class Client {
     callApp.call();
     callApp.changeCallMode(videoCall);
     callApp.changeCallMode(voiceCall);
-
   }
-
 }
