@@ -34,6 +34,13 @@ class CareTaker {
  + takeSnapshot(): Memento
 }
 
+note as N1
+  the states are encapsulated
+  into Memento and history
+  of Originator state is
+  kept in CareTaker class
+end note
+
 Memento <|-r- Originator  :<<instantiates>>
 CareTaker o--> Memento :<<uses>>
 Originator --> CareTaker
