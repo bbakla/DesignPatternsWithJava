@@ -1,9 +1,11 @@
 package behavioral.iterator;
 
+import static java.lang.Thread.sleep;
+
 import java.util.Iterator;
 
 //ConcreteCollection class
-public class BookStore implements Iterable<Book>{
+public class BookStore implements BookIterable<Book> {
   private static int MAX_BOOKS = 1000;
   private int totalBooks = 0;
   private Book[] books;
@@ -35,11 +37,23 @@ public class BookStore implements Iterable<Book>{
   }
 
   public Book[] getBooks() {
+    System.out.println("Asking the list of books from the store");
+    waitForBooks();
     return books;
   }
 
   @Override
   public Iterator<Book> iterator() {
-    return new BookIterator(books);
+    return new BookIterator(this.getBooks());
+  }
+
+  private void waitForBooks() {
+    new Thread(() -> {
+      try {
+        sleep(1000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    });
   }
 }
