@@ -42,7 +42,7 @@ note as N1
 end note
 
 Memento <|-r- Originator  :<<instantiates>>
-CareTaker o--> Memento :<<uses>>
+CareTaker  o--> "0..*" Memento :<<uses>>
 Originator --> CareTaker
 
 @enduml

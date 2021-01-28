@@ -1,0 +1,68 @@
+@startuml
+skinparam BackgroundColor #F8F8F8
+skinparam  Shadowing false
+skinparam RoundCorner 3
+skinparam packageBorderThickness 1.0
+skinparam note {
+  BorderColor Khaki
+  BackgroundColor #FCF3CF
+  FontName Courier
+  FontSite 4
+}
+skinparam class {
+BackgroundColor white
+ArrowColor CornFlowerBlue
+BorderColor #C8C8C8
+BorderThickness 1.5
+HeaderBackgroundColor LightGrey
+}
+
+class Client{
+
+}
+
+interface Builder {
+  + buildProperty1(property1):Builder
+  + buildProperty2(property2):Builder
+  + buildProperty3(property3):Builder
+
+  + build(): Product
+}
+
+class Director {
+ - Builder
+  + constructProduct()
+  }
+
+class ConcreteBuilder {}
+
+class Product {
+  -property1
+  -property2
+  -property3
+  +setProperty1()
+  +setProperty2()
+  +setProperty3()
+}
+
+Client o-- Director
+Director o-r- Builder
+Builder o-r- Product
+Builder <|-- ConcreteBuilder
+
+note top of Builder
+  return types of build
+  methods dont have to be
+  Builder
+end note
+
+note left of Director::constructProduct
+  builder = builder
+    .buildProperty1()
+    .buildProperty2()
+    .buildProperty3()
+    .build();
+end note
+
+
+@enduml
