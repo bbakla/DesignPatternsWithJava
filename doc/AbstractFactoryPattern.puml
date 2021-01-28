@@ -1,0 +1,86 @@
+@startuml
+skinparam BackgroundColor #F8F8F8
+skinparam  Shadowing false
+skinparam RoundCorner 3
+skinparam note {
+  BorderColor Khaki
+  BackgroundColor #FCF3CF
+  FontName Courier
+  FontSite 4
+}
+
+skinparam packageBorderThickness 1.0
+
+skinparam class {
+BackgroundColor white
+ArrowColor CornFlowerBlue
+BorderColor #C8C8C8
+BorderThickness 1.5
+HeaderBackgroundColor LightGrey
+}
+
+class Client {
+  - factory: AbstractFactory
+}
+
+package factories {
+  abstract class AbstractFactory{
+    + createProduct1(): Product1
+    + createProduct2(): Product2
+  }
+
+  class ConcreteFactory1 {
+    + createProduct1(): Product1
+    + createProduct2(): Product2
+  }
+  class ConcreteFactory2 {
+    + createProduct1(): Product1
+    + createProduct2(): Product2
+  }
+
+}
+
+
+package products {
+  package product1 {
+    interface Product1{}
+
+    class ConcreteProduct1_1{}
+    class ConcreteProduct1_2{}
+  }
+
+   package product2 {
+    interface Product2{}
+
+      class ConcreteProduct2_1{}
+      class ConcreteProduct2_2{}
+   }
+
+}
+
+Client -- AbstractFactory
+Client -- Product1
+Client -- Product2
+
+Product1 <|-- ConcreteProduct1_1
+Product1 <|-- ConcreteProduct1_2
+Product2 <|-- ConcreteProduct2_1
+Product2 <|-- ConcreteProduct2_2
+
+AbstractFactory <|-- ConcreteFactory1
+AbstractFactory <|-- ConcreteFactory2
+
+AbstractFactory o-[#black]- Product1
+AbstractFactory o-[#black]- Product2
+
+
+note bottom of ConcreteFactory1
+  instantiates ConcreteProduct1_1 and
+  ConcreteProduct2_1
+end note
+
+note bottom of ConcreteFactory2
+  instantiates ConcreteProduct1_2 and
+  ConcreteProduct2_2
+end note
+@enduml
