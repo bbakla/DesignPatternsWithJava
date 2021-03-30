@@ -3,6 +3,7 @@ package creational.builderPattern.classical;
 import creational.builderPattern.classical.builder.Builder;
 import creational.builderPattern.classical.builder.CarBuilder;
 import creational.builderPattern.classical.builder.MotorbikeBuilder;
+import creational.builderPattern.classical.builder.Director;
 
 public class Main {
 

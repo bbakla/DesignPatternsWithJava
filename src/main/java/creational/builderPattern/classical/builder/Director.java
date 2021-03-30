@@ -1,4 +1,4 @@
-package creational.builderPattern.classical;
+package creational.builderPattern.classical.builder;
 
 import creational.builderPattern.classical.builder.Builder;
 import creational.builderPattern.classical.product.Product;

@@ -1,5 +1,7 @@
 package structural.decorator;
 
+import structural.decorator.decorators.DataSource;
+
 //Concrete Component
 public class FileDataSource implements DataSource {
 

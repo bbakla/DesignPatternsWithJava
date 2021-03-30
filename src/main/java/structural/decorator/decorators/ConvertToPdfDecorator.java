@@ -1,7 +1,5 @@
 package structural.decorator.decorators;
 
-import structural.decorator.DataSource;
-
 public class ConvertToPdfDecorator extends AbstractDecorator {
 
   public ConvertToPdfDecorator(DataSource dataSource) {

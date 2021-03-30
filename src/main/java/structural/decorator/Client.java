@@ -2,6 +2,7 @@ package structural.decorator;
 
 import structural.decorator.decorators.CompressionDecorator;
 import structural.decorator.decorators.ConvertToPdfDecorator;
+import structural.decorator.decorators.DataSource;
 import structural.decorator.decorators.EncryptionDecorator;
 
 public class Client {

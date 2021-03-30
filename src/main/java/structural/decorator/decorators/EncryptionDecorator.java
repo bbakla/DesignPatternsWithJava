@@ -1,7 +1,5 @@
 package structural.decorator.decorators;
 
-import structural.decorator.DataSource;
-
 public class EncryptionDecorator extends AbstractDecorator {
 
   public EncryptionDecorator(DataSource dataSource) {
